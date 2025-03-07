@@ -1,15 +1,67 @@
 [tool.poetry]
 name = "pulumi-cloud-client"
 version = "0.1.0"
-description = ""
+description = "A Python client for the Pulumi Cloud Admin API"
 authors = ["Richard Shade <richard@pulumi.com>"]
 readme = "README.md"
+packages = [{include = "pulumi_cloud_client"}]
+license = "Apache-2.0"
+repository = "https://github.com/yourusername/pulumi-client"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 requests = "^2.32.3"
+commitizen = "^4.4.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+pytest-cov = "^6.0.0"
+black = "^25.1.0"
+mypy = "^1.15.0"
+isort = "^6.0.1"
+flake8 = "^7.1.2"
+pre-commit = "^4.1.0"
+types-requests = "^2.32.0.6"  # Add type stubs for requests library
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+test = "pytest:main"
+
+[tool.black]
+line-length = 120
+target-version = ["py39"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+tag_format = "v$version"
